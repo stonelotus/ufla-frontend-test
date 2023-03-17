@@ -3,4 +3,4 @@
 ## Edit README for any changes in setup / how to run
 
 # How to run this : 
-Run "node app.js" in console.
+Run "node app.js" in terminal.
