@@ -2,5 +2,10 @@
 ## Create branches for what you add
 ## Edit README for any changes in setup / how to run
 
+
+# How to set this up :
+Run "npm install live-server"
+
+
 # How to run this : 
-Run "node app.js" in terminal.
+Run "live-server" in terminal.
