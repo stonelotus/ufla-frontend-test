@@ -4,7 +4,7 @@ function add_listeners() {
 
     var buttons = document.getElementsByTagName("button");
     for (var i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener('click', function () {
+        buttons[i].addEventListener('mousedown', function () {
             console.log("Sending action: " + JSON.stringify({name: this.id}) + " to backend.")
             fetch('http://localhost:3000/test', {
                 method: 'POST',
