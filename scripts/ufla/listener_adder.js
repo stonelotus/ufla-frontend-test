@@ -1,6 +1,6 @@
 
 
-function add_listeners() {
+function addListeners() {
 
     var buttons = document.getElementsByTagName("button");
     for (var i = 0; i < buttons.length; i++) {
@@ -17,20 +17,12 @@ function add_listeners() {
             }).then(function (response) {
                 console.log("Received response from backend : ");
                 return response.json();
-            }).then(function (data) { // nu intra niciodata aici
-                console.log(data);
             })
         });
     }
 
 }
 
-
-// module.exports = {
-//     add_listeners: add_listeners
-// }
-
-
-export { add_listeners };
-
-
+module.exports = {
+    addListeners: addListeners
+}
