@@ -1,12 +1,9 @@
+import { addListeners } from './listener_adder.js'
 
-import { addListeners as whisper} from './listener_adder.js'
 
-
-function init() {
+export default function init() {
 	console.log("UFLA init");
-	whisper.addListeners();
+	addListeners();
 }
 
-
-init();
 
