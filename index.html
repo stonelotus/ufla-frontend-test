@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <script src="scripts/src/index.js"></script>
 
+
+    <!-- The only ufla setup needed -->
+    <script type="module" src="scripts/ufla/ufla.js"></script> 
+    <!--  -->
+
+</head>
 <body>
     <h1>The button Element</h1>
 
@@ -9,29 +17,6 @@
     <button type="button" id="button3" onclick="alert('Hello world!')">Click Me!</button>
     <button type="button" id="button4" onclick="alert('Hello world!')">Click Me!</button>
     <button type="button" id="button5" onclick="alert('Hello world!')">Click Me!</button>
-    <script>
-        var buttons = document.getElementsByTagName("button");
-        for (var i = 0; i < buttons.length; i++) {
-            buttons[i].addEventListener('click', function () {
-                console.log(this.id);
-                console.log(JSON.stringify({name: this.id}))
-                fetch('http://localhost:3000/test', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name: this.id
-                    })
-                }).then(function (response) {
-                    console.log("pula");
-                    return response.json();
-                }).then(function (data) {
-                    console.log("rip");
-                })
-            });
-        }
-    </script>
 </body>
 
 </html>
