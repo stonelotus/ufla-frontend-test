@@ -14,6 +14,7 @@ export const logger = {
          // Log event information to the console or send it to a server-side endpoint
 
         console.log("Registered user event : " + event.type);
+        console.log(event);
 
         let importantDataFromEvent = getImportantDataFromEvent(event);
         importantDataFromEvent.location = window.location;
