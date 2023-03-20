@@ -6,6 +6,11 @@ export const logger = {
       // document.addEventListener("submit", this.logEvent);
       document.addEventListener("input", this.logEvent);
       document.addEventListener("scroll", this.logEvent);
+      
+      document.addEventListener("DOMContentLoaded", this.logEvent);
+      // necessary to determine window size on first load
+
+      window.addEventListener("resize", this.logEvent);
       // document.addEventListener("focus", this.logEvent);
       // window.addEventListener("error", this.logError);
     },
@@ -93,6 +98,22 @@ function getImportantDataFromEvent(event) {
                 name: event.target.name,
             }
             break;
+
+        case 'resize':
+            importantDataFromEvent.target = { // event.target
+                innerHeight: event.target.innerHeight,
+                innerWidth: event.target.innerWidth,
+            }
+            break;
+
+        case 'DOMContentLoaded':
+            importantDataFromEvent.target = { // event.target
+                defaultView: {
+                    innerHeight: event.target.defaultView.innerHeight,
+                    innerWidth: event.target.defaultView.innerWidth,
+                },
+            }
+            break
 
         default:
             console.log('Unrecognised event.');
