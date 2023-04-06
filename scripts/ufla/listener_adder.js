@@ -21,8 +21,12 @@ export const logger = {
         console.log("Registered user event : " + event.type);
         console.log(event);
 
+        let xpath = getXPath(event.target);
+
         let importantDataFromEvent = getImportantDataFromEvent(event);
         importantDataFromEvent.location = window.location;
+        importantDataFromEvent.xpath = xpath;
+        console.log(xpath);
 
         // console.log(event);
 
@@ -75,6 +79,8 @@ function getImportantDataFromEvent(event) {
             break;
 
         case 'scroll':
+            importantDataFromEvent.scrollY = event.clientY;
+            importantDataFromEvent.scrollX = event.clientX;
             importantDataFromEvent.target = {
                 scrollingElement: { //event.target.scrollingElement
                     scrollTop: event.target.scrollingElement.scrollTop,
@@ -122,3 +128,20 @@ function getImportantDataFromEvent(event) {
 
     return importantDataFromEvent;
 }
+
+
+  function getXPath(element) {
+    var path = '';
+    for (; element && element.nodeType == Node.ELEMENT_NODE; element = element.parentNode) {
+      var index = 1;
+      for (var sibling = element.previousSibling; sibling; sibling = sibling.previousSibling) {
+        if (sibling.nodeName == element.nodeName) {
+          ++index;
+        }
+      }
+      var tagName = element.nodeName.toLowerCase();
+      path = '/' + tagName + '[' + index + ']' + path;
+    }
+    return path;
+  }
+  
