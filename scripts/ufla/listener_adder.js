@@ -1,18 +1,25 @@
 
 export const logger = {
     init: function() {
-      // Attach event listeners to the document
-      document.addEventListener("click", this.logEvent);
-      // document.addEventListener("submit", this.logEvent);
-      document.addEventListener("input", this.logEvent);
-      document.addEventListener("scroll", this.logEvent);
-      
-      document.addEventListener("DOMContentLoaded", this.logEvent);
-      // necessary to determine window size on first load
+        
+        // Attach event listeners to the document
 
-      window.addEventListener("resize", this.logEvent);
-      // document.addEventListener("focus", this.logEvent);
-      // window.addEventListener("error", this.logError);
+        // mouseEvents
+        const mouseEvents = ['click', 'dblclick', 'mousedown', 'mouseup', 'mousemove', 'mouseover', 'mouseout', 'mouseenter', 'mouseleave', 'contextmenu'];
+        mouseEvents.forEach((eventName) => {
+            document.addEventListener(eventName, this.logEvent);
+        });
+
+        // document.addEventListener("submit", this.logEvent);
+        document.addEventListener("input", this.logEvent);
+    //   document.addEventListener("scroll", this.logEvent);
+        
+        document.addEventListener("DOMContentLoaded", this.logEvent);
+        // necessary to determine window size on first load
+
+        window.addEventListener("resize", this.logEvent);
+        // document.addEventListener("focus", this.logEvent);
+        // window.addEventListener("error", this.logError);
     },
 
     logEvent: function(event) {
@@ -58,6 +65,15 @@ function getImportantDataFromEvent(event) {
     let eventType = event.type;
     switch(eventType) {
         case 'click':
+        case 'dblclick':
+        case 'mousedown':
+        case 'mouseup':
+        case 'mousemove':
+        case 'mouseover':
+        case 'mouseout':
+        case 'mouseenter':
+        case 'mouseleave':
+        case 'contextmenu':
             importantDataFromEvent.ctrlKey = event.ctrlKey;
             importantDataFromEvent.target = { // event.target
                 type: event.target.type,
