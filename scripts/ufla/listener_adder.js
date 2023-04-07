@@ -91,8 +91,8 @@ function getImportantDataFromEvent(event) {
             break;
 
         case 'DOMContentLoaded':
-            importantDataFromEvent.windowInnerWidth = window.outerWidth,
-            importantDataFromEvent.windowInnerHeight = window.outerHeight,
+            importantDataFromEvent.windowOuterWidth = window.outerWidth,
+            importantDataFromEvent.windowOuterHeight = window.outerHeight,
             
             importantDataFromEvent.target = { // event.target
                 defaultView: {
