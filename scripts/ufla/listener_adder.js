@@ -24,7 +24,8 @@ export const logger = {
         let xpath = getXPath(event.target);
 
         let importantDataFromEvent = getImportantDataFromEvent(event);
-        importantDataFromEvent.location = window.location;
+        importantDataFromEvent.windowOuterWidth = window.outerWidth;
+        importantDataFromEvent.windowOuterHeight = window.outerHeight;
         importantDataFromEvent.xpath = xpath;
         console.log(xpath);
 
@@ -84,23 +85,10 @@ function getImportantDataFromEvent(event) {
             break;
 
         case 'resize':
-            importantDataFromEvent.target = { // event.target
-                innerHeight: event.target.innerHeight,
-                innerWidth: event.target.innerWidth,
-            }
             break;
 
         case 'DOMContentLoaded':
-            importantDataFromEvent.windowOuterWidth = window.outerWidth,
-            importantDataFromEvent.windowOuterHeight = window.outerHeight,
-            
-            importantDataFromEvent.target = { // event.target
-                defaultView: {
-                    innerHeight: event.target.defaultView.innerHeight,
-                    innerWidth: event.target.defaultView.innerWidth,
-                },
-            }
-            break
+            break;
 
         default:
             console.log('Unrecognised event.');
