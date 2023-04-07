@@ -57,24 +57,9 @@ function getImportantDataFromEvent(event) {
     let eventType = event.type;
     switch(eventType) {
         case 'click':
-            importantDataFromEvent.view = { //event.view
-                screen: event.view.screen,
-                innerHeight: event.view.innerHeight,
-                innerWidth: event.view.innerWidth,
-                outerHeight: event.view.outerHeight,
-                outerWidth: event.view.outerWidth,
-                scrollX: event.view.scrollX,
-                scrollY: event.view.scrollY,
-            };
             importantDataFromEvent.ctrlKey = event.ctrlKey;
             importantDataFromEvent.target = { // event.target
                 type: event.target.type,
-                className: event.target.className,
-                nodeName: event.target.nodeName,
-                classList: event.target.classList,
-                id: event.target.id,
-                localName: event.target.localName,
-                name: event.target.name,
             }
             break;
 
@@ -92,16 +77,9 @@ function getImportantDataFromEvent(event) {
         case 'input':
             importantDataFromEvent.data = event.data;
             importantDataFromEvent.inputType = event.inputType;
-            importantDataFromEvent.isComposing = event.isComposing;
             importantDataFromEvent.target = { // event.target
                 value: event.target.value,
                 type: event.target.type,
-                className: event.target.className,
-                nodeName: event.target.nodeName,
-                classList: event.target.classList,
-                id: event.target.id,
-                localName: event.target.localName,
-                name: event.target.name,
             }
             break;
 
