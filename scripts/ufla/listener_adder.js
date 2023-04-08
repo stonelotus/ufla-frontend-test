@@ -1,8 +1,9 @@
 
 export const logger = {
     init: function() {
-        
         // Attach event listeners to the document
+        // TODO check if all these listeners should be added to the document
+
 
         // mouse events
         const mouseEvents = ['click', 'dblclick', 'mousedown',];// 'mouseup', 'mousemove', 'mouseover', 'mouseout', 'mouseenter', 'mouseleave', 'contextmenu']; // 
@@ -14,8 +15,14 @@ export const logger = {
         const windowEvents = ['input', 'scroll'];
         windowEvents.forEach((eventName) => {
             document.addEventListener(eventName, this.logEvent);
-        })
-        
+        });
+
+        // keyboard events
+        const keyboardEvents = ['keydown', 'keyup', 'keypress'];
+        keyboardEvents.forEach((eventName) => {
+            document.addEventListener(eventName, this.logEvent);
+        });
+
         document.addEventListener("DOMContentLoaded", this.logEvent);
         // necessary to determine window size on first load
 
@@ -82,21 +89,27 @@ function getImportantDataFromEvent(event) {
             }
             break;
 
+        case 'resize':
+            break;
         case 'scroll':
-            // importantDataFromEvent.scrollY = event.clientY;
-            // importantDataFromEvent.scrollX = event.clientX;
-            
             importantDataFromEvent.scrollY = window.scrollY;
             importantDataFromEvent.scrollX = window.scrollX;
 
             importantDataFromEvent.target = {
+                // deprecated. TODO delete
                 scrollingElement: { //event.target.scrollingElement
                     scrollTop: event.target.scrollingElement.scrollTop,
                     scrollHeight: event.target.scrollingElement.scrollHeight,
                 }
             };
             break;
-        
+        case 'keydown':
+        case 'keyup':
+        case 'keypress':
+            importantDataFromEvent.key = event.key;
+            importantDataFromEvent.ctrlKey = event.ctrlKey;
+            break;
+
         case 'input':
             importantDataFromEvent.data = event.data;
             importantDataFromEvent.inputType = event.inputType;
@@ -106,8 +119,6 @@ function getImportantDataFromEvent(event) {
             }
             break;
 
-        case 'resize':
-            break;
 
         case 'DOMContentLoaded':
             break;
