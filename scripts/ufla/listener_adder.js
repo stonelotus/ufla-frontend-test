@@ -4,15 +4,17 @@ export const logger = {
         
         // Attach event listeners to the document
 
-        // mouseEvents
-        const mouseEvents = ['click', 'dblclick', 'mousedown', 'mouseup', 'mousemove', 'mouseover', 'mouseout', 'mouseenter', 'mouseleave', 'contextmenu'];
+        // mouse events
+        const mouseEvents = ['click', 'dblclick', 'mousedown',];// 'mouseup', 'mousemove', 'mouseover', 'mouseout', 'mouseenter', 'mouseleave', 'contextmenu']; // 
         mouseEvents.forEach((eventName) => {
             document.addEventListener(eventName, this.logEvent);
         });
 
-        // document.addEventListener("submit", this.logEvent);
-        document.addEventListener("input", this.logEvent);
-    //   document.addEventListener("scroll", this.logEvent);
+        // window events
+        const windowEvents = ['input', 'scroll'];
+        windowEvents.forEach((eventName) => {
+            document.addEventListener(eventName, this.logEvent);
+        })
         
         document.addEventListener("DOMContentLoaded", this.logEvent);
         // necessary to determine window size on first load
@@ -81,8 +83,12 @@ function getImportantDataFromEvent(event) {
             break;
 
         case 'scroll':
-            importantDataFromEvent.scrollY = event.clientY;
-            importantDataFromEvent.scrollX = event.clientX;
+            // importantDataFromEvent.scrollY = event.clientY;
+            // importantDataFromEvent.scrollX = event.clientX;
+            
+            importantDataFromEvent.scrollY = window.scrollY;
+            importantDataFromEvent.scrollX = window.scrollX;
+
             importantDataFromEvent.target = {
                 scrollingElement: { //event.target.scrollingElement
                     scrollTop: event.target.scrollingElement.scrollTop,
