@@ -80,6 +80,7 @@ function getImportantDataFromEvent(event) {
 
     let eventType = event.type;
     switch (eventType) {
+        // Mouse events
         case 'click':
         case 'dblclick':
         case 'mousedown':
@@ -95,7 +96,8 @@ function getImportantDataFromEvent(event) {
                 type: event.target.type,
             }
             break;
-
+        
+        // Window events
         case 'resize':
             break;
         case 'scroll':
@@ -110,13 +112,16 @@ function getImportantDataFromEvent(event) {
                 }
             };
             break;
+        
+        // Keyboard events
         case 'keydown':
         case 'keyup':
         case 'keypress':
             importantDataFromEvent.key = event.key;
             importantDataFromEvent.ctrlKey = event.ctrlKey;
             break;
-
+        
+        // Form events
         case 'input':
             importantDataFromEvent.data = event.data;
             importantDataFromEvent.inputType = event.inputType;
@@ -125,7 +130,22 @@ function getImportantDataFromEvent(event) {
                 type: event.target.type,
             }
             break;
-
+        case 'change':
+            importantDataFromEvent.target = { // event.target
+                value: event.target.value,
+            }
+            break
+        case 'select':
+            importantDataFromEvent.target = {
+                value: event.target.value,
+                selectionStart: event.target.selectionStart,
+                selectionEnd: event.target.selectionEnd,
+            }
+        case 'blur':
+        case 'focus':
+        case 'submit':
+        case 'reset':
+            break;
 
         case 'DOMContentLoaded':
             break;
