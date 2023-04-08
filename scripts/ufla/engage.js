@@ -1,3 +1,4 @@
+
 export const logger = {
     init: function (config) {
         // Attach event listeners to the document

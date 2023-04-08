@@ -530,7 +530,13 @@
 	<!-- javascript -->
 	<script src="js/owl.carousel.js"></script>
 	<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-	<script type="module" src="scripts/ufla/ufla.js"></script> 
+	<!-- <script type="module" src="scripts/ufla/ufla.js"></script>  -->
+	<script type="module">
+		import { initializeLogger } from 'https://ufla.allquest.net/engage.js';
+		initializeLogger({
+		  licenseKey: "pulapulapizdapizd",
+		});
+	</script>
 
 	<script>
 		$(document).ready(function () {
